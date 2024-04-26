@@ -1,0 +1,55 @@
+name: Test Coverage Report
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your main branch name
+  pull_request:
+    branches:
+      - main  # Adjust this to your main branch name
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Set up your Python environment, install dependencies, and run tests
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # Adjust Python version as needed
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests with coverage
+        run: |
+          pytest --cov=./
+
+      # Generate coverage report using vitest-coverage-report-action
+      - name: Vitest Coverage Report
+        uses: davelosert/vitest-coverage-report-action@v2.3.1
+        with:
+          # GitHub access token with permissions to write to issues. 
+          # Uses secrets.GITHUB_TOKEN by default.
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          
+
+          # Path to the JSON coverage summary file.
+          json-summary-path: coverage/coverage-summary.json
+
+          # Path to the JSON coverage final file.
+          json-final-path: coverage/coverage-final.json
+
+          # How to show summary for files coverage. Options: changes, diff, all.
+          file-coverage-mode: changes
+
+          # Custom working directory if needed.
+          working-directory: ./
+
+          # The name of the coverage report. Can be used to execute this action multiple times.
+          name: Test Coverage Report
