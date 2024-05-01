@@ -13,6 +13,7 @@ jobs:
           docker build . -t alexandrakoroleva/q_learning:latest
       - name: publish
         run: |
+          docker login -u alexandrakoroleva -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push alexandrakoroleva/q_learning:latest
       
     
