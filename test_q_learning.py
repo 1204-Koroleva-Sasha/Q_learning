@@ -154,7 +154,6 @@ class TestTrainQLearning(unittest.TestCase):
         num_episodes = 5
         episode_rewards, _, _ = train_q_learning(num_episodes)
 
-        # Assert that all episode rewards are the same and consistent
         self.assertTrue(all(reward == consistent_reward for reward in episode_rewards))
 
 
@@ -164,22 +163,16 @@ class TestMainFunction(unittest.TestCase):
     @patch('q_learning.simulate_episode')
     @patch('builtins.print')
     def test_main(self, mock_print, mock_simulate_episode, mock_print_q_values, mock_plot_rewards):
-        # Setup return values for simulate_episode
         mock_simulate_episode.return_value = (50, ['details1', 'details2'])
 
-        # Execute main function
         main(12)
 
-        # Check simulate_episode was called 12 times
         self.assertEqual(mock_simulate_episode.call_count, 12)
 
-        # Check if print was called with "Training complete."
         mock_print.assert_any_call("Training complete.")
 
-        # Check if Q-values were printed
         mock_print_q_values.assert_called_once()
 
-        # Check if rewards were plotted
         mock_plot_rewards.assert_called_once()
 
 
@@ -192,22 +185,18 @@ class TestPlotRewards(unittest.TestCase):
     @patch('matplotlib.pyplot.plot')
     @patch('matplotlib.pyplot.figure')
     def test_plot_rewards(self, mock_figure, mock_plot, mock_xlabel, mock_ylabel, mock_title, mock_legend, mock_show):
-        episode_rewards = [10, 20, -5, 15, 25]  # Example reward data
+        episode_rewards = [10, 20, -5, 15, 25]
         plot_rewards(episode_rewards)
 
-        # Check if a figure was created
         mock_figure.assert_called_once_with(figsize=(10, 6))
 
-        # Check if plot was called correctly with the expected rewards
         mock_plot.assert_called_once_with(episode_rewards, label='Total Reward')
 
-        # Check the labels and titles
         mock_xlabel.assert_called_once_with('Episode')
         mock_ylabel.assert_called_once_with('Total Reward')
         mock_title.assert_called_once_with('Reward of Learning Episodes')
         mock_legend.assert_called_once()
 
-        # Check if show was called to display the plot
         mock_show.assert_called_once()
 
 

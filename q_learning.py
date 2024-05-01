@@ -1,17 +1,16 @@
-#Alexandra Koroleva
-#04/23/2024
-#Q learning (Off Policy control), robot can go up, down, left, right. If it's out of bounds it gets a reward of -1, otherwise it gets a reward of 0. If it reaches the goal it gets a reward of +100. The goal is at (5,5).The robot is controlled by the agent, which is a random policy.The agent is trained by the environment.
-#Plot the action selection of the initial learning episode and the last learning episode. Something is similar to this table:
-#Show the Q table of the last learning episode
-#Plot the reward of all learning episodes
+# Alexandra Koroleva
+# 04/23/2024
+# Q learning (Off Policy control)
+# Show the Q table of the last learning episode
+# Plot the reward of all learning episodes
 
 import numpy as np
 import random
 import matplotlib.pyplot as plt
 
 # Constants for grid and goal
-GRID_SIZE = 6
-GOAL_POSITION = (5, 5)
+GRID_SIZE = 5
+GOAL_POSITION = (4, 4)
 
 # Q-learning parameters
 ALPHA = 0.9
@@ -67,7 +66,7 @@ def simulate_episode(Q):
 
     return total_reward, details
 
-#CHANGE THIS
+
 def print_q_values(Q):
     """Print Q-tables in a readable format."""
     print("Q-values (State: [Up, Down, Left, Right]):")
@@ -106,11 +105,9 @@ def main(num_episodes=12):
     # Train Q-learning and get results
     episode_rewards, initial_episode_details, last_episode_details = train_q_learning(num_episodes)
 
-    # Print training results
     print("Training complete.")
     print_q_values(Q)
 
-    # Plot rewards
     plot_rewards(episode_rewards)
 
 
