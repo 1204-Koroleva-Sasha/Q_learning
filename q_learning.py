@@ -67,7 +67,7 @@ def simulate_episode(Q):
 
     return total_reward, details
 
-
+#CHANGE THIS
 def print_q_values(Q):
     """Print Q-tables in a readable format."""
     print("Q-values (State: [Up, Down, Left, Right]):")
