@@ -15,7 +15,7 @@ This project implements the Q-learning algorithm to solve a grid navigation prob
 git clone https://github.com/your_username/your_repository.git
 
 # Navigate to the project directory
-cd your_repository
+cd Q_learning
 
 # Install dependencies
 pip install -r requirements.txt
