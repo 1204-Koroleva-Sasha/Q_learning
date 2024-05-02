@@ -169,7 +169,7 @@ class TestMainFunction(unittest.TestCase):
 
         self.assertEqual(mock_simulate_episode.call_count, 12)
 
-        mock_print.assert_any_call("Training complete :)")
+        mock_print.assert_any_call("Training complete :3")
 
         mock_print_q_values.assert_called_once()
 
