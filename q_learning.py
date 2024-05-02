@@ -106,7 +106,7 @@ def main(num_episodes=12):
     # Train Q-learning and get results
     episode_rewards, initial_episode_details, last_episode_details = train_q_learning(num_episodes)
 
-    print("Training complete ;)")
+    print("Training complete :)")
     print_q_values(Q)
 
     plot_rewards(episode_rewards)
